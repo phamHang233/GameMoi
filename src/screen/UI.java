@@ -98,8 +98,8 @@ public class UI {
     	if(gp. gameState == gp.playState) {
 			g2.setFont(arial_40);
     		g2.setColor(Color.white);
-        	g2.drawString("row: "+ (gp.playerGra.worldY/ gp.tileSize+2), 10, 10*gp.tileSize);
-        	g2.drawString("col: "+ gp.playerGra.worldX/ gp.tileSize, 10, 11*gp.tileSize);
+        	g2.drawString("row: "+ (gp.playerGra.worldY/ gp.tileSize+1), 10, 10*gp.tileSize);
+        	g2.drawString("col: "+ (gp.playerGra.worldX/ gp.tileSize+1), 10, 11*gp.tileSize);
         	drawMessage();
     		drawPlayerLife();
     	}
