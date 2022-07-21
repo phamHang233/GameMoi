@@ -18,7 +18,7 @@ public class Projectile extends SuperObject{
 	 
 
     public Projectile (GamePanel gp) {
-    	this.gp= gp;
+    	this.gp = gp;
     
     	}
     public void set(int worldX, int worldY, String direction, boolean alive, Entity user) {
