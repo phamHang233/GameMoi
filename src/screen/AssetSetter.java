@@ -16,6 +16,7 @@ import object.OBJ_Key;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Potion_Red;
 import object.OBJ_Shield_Blue;
+import object.OBJ_Teleport;
 
 public class AssetSetter {
 
@@ -50,16 +51,22 @@ public class AssetSetter {
     	i++;
     	gp.objGra[0][i] = new OBJ_Potion_Red(gp);
     	gp.objGra[0][i].worldX = gp.tileSize*22;
-    	gp.objGra[0][i].worldY = gp.tileSize*27;
+    	gp.objGra[0][i].worldY = gp.tileSize*18;
     	i++;
     	gp.objGra[0][i] = new OBJ_Heart(gp);
-    	gp.objGra[0][i].worldX = gp.tileSize*22;
+    	gp.objGra[0][i].worldX = gp.tileSize*16;
     	gp.objGra[0][i].worldY = gp.tileSize*29;
     	i++;
     	gp.objGra[0][i] = new OBJ_ManaCrystal(gp);
     	gp.objGra[0][i].worldX = gp.tileSize*27;
     	gp.objGra[0][i].worldY = gp.tileSize*31;
     	i++;
+    	
+//    	// Đây là vị trí cổng tele. 
+//    	gp.objGra[0][i] = new OBJ_Teleport(gp);
+//    	gp.objGra[0][i].worldX = gp.tileSize*13;
+//    	gp.objGra[0][i].worldY = gp.tileSize*25;
+//    	i++;
     }
     
     public void setNPC() {
@@ -77,24 +84,24 @@ public class AssetSetter {
     public void setMonster() {
     	int i=0;
     	gp.monsterGra[0][i]=new MonsterGraphic(gp);
-    	gp.monsterGra[0][i].worldX =(gp.tileSize*21);
-    	gp.monsterGra[0][i].worldY= (gp.tileSize*38);
+    	gp.monsterGra[0][i].worldX =(gp.tileSize*16);
+    	gp.monsterGra[0][i].worldY= (gp.tileSize*24);
     	i++;
     	gp.monsterGra[0][i]=new MonsterGraphic(gp);
-    	gp.monsterGra[0][i].worldX= (gp.tileSize*23);
-    	gp.monsterGra[0][i].worldY= (gp.tileSize*42);
+    	gp.monsterGra[0][i].worldX= (gp.tileSize*21);
+    	gp.monsterGra[0][i].worldY= (gp.tileSize*16);
     	i++;
     	gp.monsterGra[0][i]=new MonsterGraphic(gp);
     	gp.monsterGra[0][i].worldX= (gp.tileSize*24);
     	gp.monsterGra[0][i].worldY= (gp.tileSize*37);
     	i++;
     	gp.monsterGra[0][i]=new MonsterGraphic(gp);
-    	gp.monsterGra[0][i].worldX= (gp.tileSize*34);
-    	gp.monsterGra[0][i].worldY= (gp.tileSize*42);
+    	gp.monsterGra[0][i].worldX= (gp.tileSize*36);
+    	gp.monsterGra[0][i].worldY= (gp.tileSize*13);
     	i++;
     	gp.monsterGra[0][i]=new MonsterGraphic(gp);
-    	gp.monsterGra[0][i].worldX=(gp.tileSize*38);
-    	gp.monsterGra[0][i].worldY= (gp.tileSize*42);
+    	gp.monsterGra[0][i].worldX=(gp.tileSize*12);
+    	gp.monsterGra[0][i].worldY= (gp.tileSize*12);
     	i++;
     }
 }

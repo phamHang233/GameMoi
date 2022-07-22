@@ -20,14 +20,14 @@ public class OBJ_Rock extends ProjectileGraphic{
     }
 
     public void getImage() {
-        up1 = setup("/res/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        up2 = setup("/res/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        down1 = setup("/res/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("/res/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        left1 = setup("/res/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        left2 = setup("/res/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        right1 = setup("/res/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        right2 = setup("/res/projectile/rock_down_1", gp.tileSize, gp.tileSize);
+    	up1 = setup("/res/projectile/bomb_4", gp.tileSize, gp.tileSize);
+        up2 = setup("/res/projectile/bomb_4", gp.tileSize, gp.tileSize);
+        down1 = setup("/res/projectile/bomb_4", gp.tileSize, gp.tileSize);
+        down2 = setup("/res/projectile/bomb_4", gp.tileSize, gp.tileSize);
+        left1 = setup("/res/projectile/bomb_4", gp.tileSize, gp.tileSize);
+        left2 = setup("/res/projectile/bomb_4", gp.tileSize, gp.tileSize);
+        right1 = setup("/res/projectile/bomb_4", gp.tileSize, gp.tileSize);
+        right2 = setup("/res/projectile/bomb_4", gp.tileSize, gp.tileSize);
     }
 
     public boolean haveResource(Entity user) {

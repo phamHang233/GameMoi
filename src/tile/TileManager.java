@@ -255,6 +255,7 @@ public class TileManager {
 		setup(200,"insidehouse78",true);
 		setup(201,"insidehouse79",true);
 		setup(202,"insidehouse80",true);
+		setup(203,"Tele",false);
 		
 	
 	}
