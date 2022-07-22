@@ -121,6 +121,9 @@ public class PlayerGraphic  extends EntityGraphic {
 //    		//CHECK NPC COLLISTION		
     		int npcIndex = gp.cChecker.checkEntity(this, this.player, gp.oldMan_Gra);
     		player.interactNPC(npcIndex, gp, this);
+    		//CHECK PRIN COLLISTION
+    		int prinIndex = gp.cChecker.checkEntity(this, this.player, gp.princess_Gra);
+    		player.interactPrin(prinIndex, gp, this);
     		
     		//CHECK EVENT
     		gp.eHandler.checkEvent();

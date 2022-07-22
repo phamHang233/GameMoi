@@ -23,22 +23,16 @@ public class EntityGraphic {
     protected BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
     attackLeft1, attackLeft2, attackRight1, attackRight2;
     public Projectile projectile;
-    
-    //public BufferedImage image, image2, image3;
     public Rectangle solidArea ;
     public Rectangle attackArea ;
     protected int solidAreaDefaultX, solidAreaDefaultY; // for object interacting
-    //public boolean collision ;
     protected String dialogues[] = new String[20]; 
     //STATE
   	public int worldX, worldY;
   	protected boolean invincible ; //for monster collision
   	protected boolean attacking ;
   	protected boolean alive = true;
-  	protected boolean dying ;
-    
-    //STATE
-   
+  	protected boolean dying;
     protected String direction;
     protected  int spriteNum = 1;
     protected int dialogueIndex;
@@ -95,7 +89,7 @@ public class EntityGraphic {
     	gp.cChecker.checkTile(this, entity);
     	//gp.cChecker.checkObject(this, entity, false);
         gp.cChecker.checkEntity(this, entity, gp.oldMan_Gra);
-        //gp.cChecker.checkEntity(this, entity, gp.princess_Gra);
+        gp.cChecker.checkEntity(this, entity, gp.princess_Gra);
         gp.cChecker.checkEntity(this, entity, gp.monsterGra);
 
     	boolean contactPlayer = gp.cChecker.checkPlayer(this, entity);
@@ -227,6 +221,7 @@ public class EntityGraphic {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,  alphaValue));
 	}
 	public BufferedImage getDown1() { return down1;}
+	public BufferedImage getDown2() { return down2;}
 	public int getSolidAreaDefaultX() { return solidAreaDefaultX;}
 	public int getSolidAreaDefaultY() { return solidAreaDefaultY;}
 	public String getDirection() { return direction;}

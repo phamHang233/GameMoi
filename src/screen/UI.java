@@ -126,6 +126,10 @@ public class UI {
     	if(gp.gameState == gp.gameOverState) {
     		drawGameOverScreen();
     	}
+    	// WIN GAME STATE
+    	if(gp.gameState == gp.winGameState) {
+    		drawWinGameState();
+    	}
     }
 public void drawMessage() { 
     	
@@ -484,7 +488,7 @@ public void drawPlayerLife() 	{
     		y += 40;
     	}
     }
-public void drawOptionsScreen() {
+    public void drawOptionsScreen() {
     	
     	g2.setColor(Color.white);
     	g2.setFont(g2.getFont().deriveFont(32F));
@@ -748,6 +752,32 @@ public void drawOptionsScreen() {
     	if(commandNum == 1) {
     		g2.drawString(">", x - 25, y);
     	}
+    }
+    public void drawWinGameState() {
+    	g2.setColor(new Color(0,250,154));
+    	g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+    	OBJ_Heart objHeart = new OBJ_Heart(gp);
+    	
+    	g2.setFont(g2.getFont().deriveFont(Font.BOLD, 80F));
+    	String text = "THEY LIVED HAPPILY EVER AFTER";
+    	int x = getXforCenteredText(text);
+    	int y = gp.tileSize*3;
+    	g2.setColor(new Color(178,34,34));
+    	g2.drawString(text, x+5, y+5);
+    	
+    	g2.setColor(new Color(220,20,60));
+    	g2.drawString(text, x, y);
+    	
+    	//MARIO IMAGE
+    	x = gp.screenWidth/2 + gp.tileSize;
+    	y += gp.tileSize*2;
+    	g2.drawImage(gp.playerGra.getDown1(), x, y, gp.tileSize*2, gp.tileSize*2, null);
+    	//PRINCESS IMAGE
+    	x = gp.screenWidth/2 - gp.tileSize*3;
+    	g2.drawImage(gp.princess_Gra[2][1].getDown2(), x, y, gp.tileSize*2, gp.tileSize*2, null);
+    	x = gp.screenWidth/2 - 25;
+    	y += 25;
+    	g2.drawImage(objHeart.getImage1(), x, y, gp.tileSize, gp.tileSize, null);
     }
     	
     public void drawSubWindow(int x,int y,int width,int height) { //video15
