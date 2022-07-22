@@ -4,6 +4,7 @@ package entity;
 import screen.GamePanel;
 
 import object.SuperObject;
+import object.SuperObjectGraphic;
 
 public class Monster_GreenSlime extends Entity{
 	
@@ -18,12 +19,12 @@ public class Monster_GreenSlime extends Entity{
         defense = 0;
         exp = 2;
     }
-    public void dropItem(SuperObject droppedItem, MonsterGraphic monsterGra, GamePanel gp) {
-        for(int i = 0; i < gp.obj.length; i++) {
-        	if(gp.obj[gp.currentMap][i] == null) {
-        		gp.obj[gp.currentMap][i] = droppedItem;
-    			gp.obj[gp.currentMap][i].worldX = monsterGra.worldX;  //the dead monster's worldX
-        		gp.obj[gp.currentMap][i].worldY = monsterGra.worldY;
+    public void dropItem(SuperObjectGraphic droppedItem, MonsterGraphic monsterGra, GamePanel gp) {
+        for(int i = 0; i < gp.objGra.length; i++) {
+        	if(gp.objGra[gp.currentMap][i] == null) {
+        		gp.objGra[gp.currentMap][i] = droppedItem;
+    			gp.objGra[gp.currentMap][i].worldX = monsterGra.worldX;  //the dead monster's worldX
+        		gp.objGra[gp.currentMap][i].worldY = monsterGra.worldY;
         		break;
         	}
         }

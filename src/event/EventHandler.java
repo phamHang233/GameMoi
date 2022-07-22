@@ -1,10 +1,12 @@
 package event;
 
+import java.awt.Rectangle;
+
 import screen.GamePanel;
 
 public class EventHandler {
 	GamePanel gp;
-	EventRect eventRect[][][];
+	Event event[];
 	
 	int previousEventX, previousEventY;
 	boolean canTouchEvent = true;
@@ -12,32 +14,20 @@ public class EventHandler {
 	public EventHandler(GamePanel gp) {
 		this.gp = gp;
 		
-		eventRect = new EventRect[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
+		event = new Event[20]; //has max 20 event
 		
-		int map = 0;
-		int col = 0;
-		int row = 0;
-		while(map < gp.maxMap && col < gp.maxWorldCol && row < gp.maxWorldRow) {
-			
-			eventRect[map][col][row] = new EventRect();
-			eventRect[map][col][row].x = 20;
-			eventRect[map][col][row].y = 20;
-			eventRect[map][col][row].width = 2;
-			eventRect[map][col][row].height = 2;
-			eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
-			eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
-			
-			col++;
-			if(col == gp.maxWorldCol) {
-				col = 0;
-				row++;
-				
-				if(row == gp.maxWorldRow) {
-					row = 0;
-					map++;
-				}
-			}
-		}
+		//Set Event
+		event[0] = new Event("Pit",10,32);
+		event[1] = new Event("Pit",14,25);
+		event[2] = new Event("Pit",15,27);
+		event[3] = new Event("Magic Pool",27,18);
+		event[4] = new Event("Magic Pool",26,18);
+		event[5] = new Event("Magic Pool",25,18);
+		event[6] = new Event("Magic Pool",24,18);
+		event[7] = new Event("Magic Pool",23,18);
+		event[8] = new EventGate(0, 13, 24, 1, 12, 13);
+		event[9] = new EventGate(1, 10, 25, 0, 31, 39);
+		event[10] = new EventGate(0, 32, 39, 1, 12, 23);
 	}
 	public void checkEvent() {
 		
@@ -49,69 +39,77 @@ public class EventHandler {
 			canTouchEvent = true;
 		}
 		if(canTouchEvent == true) {
-			
-//			if(hit(27, 16, "right") == true) {damagePit(27, 16, gp.dialogueState);}
-//			if(hit(27, 16, "right") == true) {teleport(gp.dialogueState);}
-//			if(hit(23, 12, "up") == true) {healingPool(23, 12, gp.dialogueState);}
-	
+			for(int i = 0; i < event.length; i++) {
+				if(event[i] != null) {
+					if(hit(event[i], "any")){
+					if(event[i].getName() == "Pit") damagePit(gp.dialogueState); 
+					else if(event[i].getName() == "Gate") teleport((EventGate)event[i], gp.dialogueState);
+					}
+					if(hit(event[i], "up")) {
+						if(event[i].getName() == "Magic Pool") healingPool(gp.dialogueState);
+					}
+				}
+			}
 		}
-		
+
 	}
-	public boolean hit(int map, int col, int row, String reqDirection) {
+	public boolean hit(Event event, String reqDirection) {
 		boolean hit = false;
-		
-		if(map == gp.currentMap) {
+		Rectangle solidArea = new Rectangle(event.getSolidArea());
+		if( event.getLocationMap() == gp.currentMap) {
 			gp.playerGra.solidArea.x = gp.playerGra.worldX + gp.playerGra.solidArea.x;
 			gp.playerGra.solidArea.y = gp.playerGra.worldY + gp.playerGra.solidArea.y;
-			eventRect[map][col][row].x = col*gp.tileSize + eventRect[map][col][row].x;
-			eventRect[map][col][row].y = row*gp.tileSize + eventRect[map][col][row].y;
+			solidArea.x = event.getEventCol()*gp.tileSize + event.getSolidArea().x;
+			solidArea.y = event.getEventRow()*gp.tileSize + event.getSolidArea().y;
 			
-			if(gp.playerGra.solidArea.intersects(eventRect[map][col][row]) && eventRect[map][col][row].eventDone == false) {
+			if(gp.playerGra.solidArea.intersects(solidArea)) {
 				if(gp.playerGra.getDirection().contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
 					hit = true;
-					
 					previousEventX = gp.playerGra.worldX;
 					previousEventY = gp.playerGra.worldY;
 				}
 			}
-			
+
 			gp.playerGra.solidArea.x = gp.playerGra.getSolidAreaDefaultX();
 			gp.playerGra.solidArea.y = gp.playerGra.getSolidAreaDefaultY();
-			eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
-			eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
-			
+
 		}
 		
 		return hit;
 	}
-	public void teleport(int map, int col, int row) {
-		gp.currentMap = map;
-		gp.playerGra.worldX = gp.tileSize*col;
-		gp.playerGra.worldY = gp.tileSize*row;
-		previousEventX = gp.playerGra.worldX;
-		previousEventY = gp.playerGra.worldY;
-		canTouchEvent = false;
-		gp.playSE(13);
-	}
-	public void damagePit(int gameState) {
+	public void teleport(EventGate e, int gameState) {
 		gp.gameState = gameState;
-		gp.ui.setCurrentDialogue( "You fall into a pit!");
+		gp.ui.setCurrentDialogue("Teleport!");
+		gp.currentMap = e.getToMap();
+		gp.playerGra.worldX = e.getToWorldCol()*gp.tileSize;
+		gp.playerGra.worldY = e.getToWorldRow()*gp.tileSize;
+		canTouchEvent = false;
+	}
+	public void damagePit (int gameState) {
+		gp.gameState = gameState;
+		gp.ui.setCurrentDialogue("You fall into a pit!");
 		gp.playerGra.player.hp -= 1;
 		gp.playSE(6);
-		//eventRect[col][row].eventDone = true; 
-		canTouchEvent = true;
+		canTouchEvent = false;
 	}
 	public void healingPool(int gameState) {
 		if(gp.keyH.enterPressed == true) {
 			gp.gameState = gameState;
 			gp.playerGra.setAttackCanceled(true);
 			gp.playSE(2);
-			gp.ui.setCurrentDialogue( "You drink the water.\n Your hp has been recovered.");
-			gp.playerGra.player.hp = gp.playerGra.player. getMaxHp();
+			gp.ui.setCurrentDialogue("You drink the water.\n Your hp has been recovered.");
+			gp.playerGra.player.hp = gp.playerGra.player.getMaxHp();
 			gp.playerGra.player.mana = gp.playerGra.player.getMaxMana();	
 			gp.aSetter.setMonster();
-			//eventRect[col][row].eventDone = true;
-		}
+		} 	
 
 	}
+//	public void teleport( int map, int col, int row) {
+//		gp.currentMap = map;
+//		gp.playerGra.player.worldX = gp.tileSize*col;
+//		gp.playerGra.player.worldY = gp.tileSize*row;
+//		previousEventX = gp.playerGra.player.worldX;
+//		previousEventY = gp.playerGra.player.worldY;
+//		canTouchEvent = false;
+//	}
 }

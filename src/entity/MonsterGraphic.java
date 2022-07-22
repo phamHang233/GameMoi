@@ -22,7 +22,7 @@ public class MonsterGraphic extends EntityGraphic{
         solidArea.height = 30; 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        projectile = new OBJ_Rock(gp);
+        projectileGra = new OBJ_Rock(gp);
 
         getImage(); 
     }
@@ -59,9 +59,9 @@ public class MonsterGraphic extends EntityGraphic{
     		actionLockCounter = 0;
     	}
     	int i = new Random().nextInt(100) + 1;
-        if(i > 99 && this.projectile.isAlive() == false && shotAvailableCounte == 30) {
-        	this.projectile.set(this.worldX, this.worldY, this.direction, true, monGreen);
-            gp.projectileList.add(projectile);
+        if(i > 99 && this.projectileGra.isAlive() == false && shotAvailableCounte == 30) {
+        	this.projectileGra.set(this.worldX, this.worldY, this.direction, true, monGreen);
+            gp.projectileGraList.add(projectileGra);
             shotAvailableCounte = 0;
         }
     }

@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import object.Projectile;
+import object.ProjectileGraphic;
 import screen.GamePanel;
 import screen.UtilityTool;
 
@@ -22,7 +23,7 @@ public class EntityGraphic {
     protected BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     protected BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
     attackLeft1, attackLeft2, attackRight1, attackRight2;
-    public Projectile projectile;
+    public ProjectileGraphic projectileGra;
     
     //public BufferedImage image, image2, image3;
     public Rectangle solidArea ;
@@ -234,7 +235,6 @@ public class EntityGraphic {
 	public boolean getInvincible() { return invincible;}
 	public boolean  isAlive() {return alive;}
 	public boolean  isDying() {	return dying;}
-
 }
 
 	

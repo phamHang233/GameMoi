@@ -4,6 +4,7 @@ import entity.Entity;
 import entity.EntityGraphic;
 import entity.MonsterGraphic;
 import object.Projectile;
+import object.ProjectileGraphic;
 import screen.GamePanel;
 
 public class CollisionChecker {
@@ -127,15 +128,15 @@ public int checkObject(EntityGraphic entityGra, Entity entity, boolean player){
 
         int index = 999;
 
-        for(int i = 0; i < gp.obj.length; i++){
+        for(int i = 0; i < gp.objGra.length; i++){
 
-            if(gp.obj[gp.currentMap][i] != null) {
+            if(gp.objGra[gp.currentMap][i] != null) {
                 // Get entity's solid area position
             	entityGra.solidArea.x = entityGra.worldX + entityGra.solidArea.x;
             	entityGra.solidArea.y = entityGra.worldY + entityGra.solidArea.y;
                 //Get the object's solid area position
-                gp.obj[gp.currentMap][i].solidArea.x = gp.obj[gp.currentMap][i].worldX + gp.obj[gp.currentMap][i].solidArea.x;
-                gp.obj[gp.currentMap][i].solidArea.y = gp.obj[gp.currentMap][i].worldY + gp.obj[gp.currentMap][i].solidArea.y;
+                gp.objGra[gp.currentMap][i].solidArea.x = gp.objGra[gp.currentMap][i].worldX + gp.objGra[gp.currentMap][i].solidArea.x;
+                gp.objGra[gp.currentMap][i].solidArea.y = gp.objGra[gp.currentMap][i].worldY + gp.objGra[gp.currentMap][i].solidArea.y;
 
                 switch(entityGra.getDirection()) {
                     case "up":
@@ -147,8 +148,8 @@ public int checkObject(EntityGraphic entityGra, Entity entity, boolean player){
                     case "right":
                     	entityGra.solidArea.x += entity.getSpeed();break;
                 }
-                if(entityGra.solidArea.intersects(gp.obj[gp.currentMap][i].solidArea)) {
-                    if(gp.obj[gp.currentMap][i].collision == true) {
+                if(entityGra.solidArea.intersects(gp.objGra[gp.currentMap][i].solidArea)) {
+                    if(gp.objGra[gp.currentMap][i].collision == true) {
                         entityGra.setCollisionOn(true);
                     }
                     if(player == true) {index = i; }
@@ -156,8 +157,8 @@ public int checkObject(EntityGraphic entityGra, Entity entity, boolean player){
             //RESET SOLID AREA NUMBER
                 entityGra.solidArea.x = entityGra.getSolidAreaDefaultX();
                 entityGra.solidArea.y = entityGra.getSolidAreaDefaultY();
-                gp.obj[gp.currentMap][i].solidArea.x = gp.obj[gp.currentMap][i].getSolidAreaDefaultX();
-                gp.obj[gp.currentMap][i].solidArea.y = gp.obj[gp.currentMap][i].getSolidAreaDefaultY();
+                gp.objGra[gp.currentMap][i].solidArea.x = gp.objGra[gp.currentMap][i].getSolidAreaDefaultX();
+                gp.objGra[gp.currentMap][i].solidArea.y = gp.objGra[gp.currentMap][i].getSolidAreaDefaultY();
             }
 
         }
@@ -165,7 +166,7 @@ public int checkObject(EntityGraphic entityGra, Entity entity, boolean player){
         return index;
     }
     
-    public int checkProjectile(Projectile projectile ,EntityGraphic entityGra[][]) {
+    public int checkProjectile(ProjectileGraphic projectileGra ,EntityGraphic entityGra[][]) {
     	MonsterGraphic monGreen[][] = new MonsterGraphic[gp.maxMap][10];
   	  
 	   for (int j = 0; j < entityGra.length; j++) {
@@ -181,27 +182,27 @@ public int checkObject(EntityGraphic entityGra, Entity entity, boolean player){
              if(entityGra[gp.currentMap][i] != null) {
              	
                  // Get entity's solid area position
-            	 projectile.solidArea.x = projectile.worldX + projectile.solidArea.x;
-            	 projectile.solidArea.y = projectile.worldY + projectile.solidArea.y;
+            	 projectileGra.solidArea.x = projectileGra.worldX + projectileGra.solidArea.x;
+            	 projectileGra.solidArea.y = projectileGra.worldY + projectileGra.solidArea.y;
                  //Get the target's solid area position
             	 entityGra[gp.currentMap][i].solidArea.x = monGreen[gp.currentMap][i].worldX + entityGra[gp.currentMap][i].solidArea.x;
             	 entityGra[gp.currentMap][i].solidArea.y = monGreen[gp.currentMap][i].worldY + entityGra[gp.currentMap][i].solidArea.y;
 
-                 switch(projectile.getDirection()) {
-                     case "up": projectile.solidArea.y -= projectile. getSpeed(); break;
-                     case "down": projectile.solidArea.y += projectile. getSpeed(); break;
-                     case "left": projectile.solidArea.x -= projectile. getSpeed(); break;
-                     case "right": projectile.solidArea.x += projectile. getSpeed(); break;
+                 switch(projectileGra.getDirection()) {
+                     case "up": projectileGra.solidArea.y -= projectileGra.projectile.getSpeed(); break;
+                     case "down": projectileGra.solidArea.y += projectileGra.projectile.getSpeed(); break;
+                     case "left": projectileGra.solidArea.x -= projectileGra.projectile.getSpeed(); break;
+                     case "right": projectileGra.solidArea.x += projectileGra.projectile.getSpeed(); break;
                  }
-                 if(projectile.solidArea.intersects(entityGra[gp.currentMap][i].solidArea)) {
+                 if(projectileGra.solidArea.intersects(entityGra[gp.currentMap][i].solidArea)) {
                       
-                	 projectile.setCollisionOn(true);
+                	 projectileGra.setCollisionOn(true);
                       index = i;      
                       
                   }
              //RESET SOLID AREA NUMBER
-                 projectile.solidArea.x = projectile.getSolidAreaDefaultX();
-                 projectile.solidArea.y = projectile.getSolidAreaDefaultY();
+                 projectileGra.solidArea.x = projectileGra.getSolidAreaDefaultX();
+                 projectileGra.solidArea.y = projectileGra.getSolidAreaDefaultY();
                  entityGra[gp.currentMap][i].solidArea.x = entityGra[gp.currentMap][i].getSolidAreaDefaultX();
                  entityGra[gp.currentMap][i].solidArea.y = entityGra[gp.currentMap][i].getSolidAreaDefaultY();
              }
@@ -239,28 +240,28 @@ public int checkObject(EntityGraphic entityGra, Entity entity, boolean player){
         gp.playerGra.solidArea.y = gp.playerGra.getSolidAreaDefaultY();
         return contactPlayer;
     }
-    public boolean checkPlayerProjectile(Projectile projectile) {
+    public boolean checkPlayerProjectile(ProjectileGraphic projectileGra) {
     	boolean contactPlayer = false;
-    	 projectile.solidArea.x = projectile.worldX + projectile.solidArea.x;
-    	 projectile.solidArea.y = projectile.worldY + projectile.solidArea.y;
+    	 projectileGra.solidArea.x = projectileGra.worldX + projectileGra.solidArea.x;
+    	 projectileGra.solidArea.y = projectileGra.worldY + projectileGra.solidArea.y;
          //Get the target's solid area position
     	 gp.playerGra.solidArea.x = gp.playerGra.worldX + gp.playerGra.solidArea.x;
     	 gp.playerGra.solidArea.y = gp.playerGra.worldY + gp.playerGra.solidArea.y;
 
-         switch(projectile.getDirection()) {
-             case "up": projectile.solidArea.y -= projectile. getSpeed(); break;
-             case "down": projectile.solidArea.y += projectile. getSpeed(); break;
-             case "left": projectile.solidArea.x -= projectile. getSpeed(); break;
-             case "right": projectile.solidArea.x += projectile. getSpeed(); break;
+         switch(projectileGra.getDirection()) {
+             case "up": projectileGra.solidArea.y -= projectileGra.projectile.getSpeed(); break;
+             case "down": projectileGra.solidArea.y += projectileGra.projectile.getSpeed(); break;
+             case "left": projectileGra.solidArea.x -= projectileGra.projectile.getSpeed(); break;
+             case "right": projectileGra.solidArea.x += projectileGra.projectile.getSpeed(); break;
          }
     
-    if(projectile.solidArea.intersects(gp.playerGra.solidArea)) {                            
-    	projectile. setCollisionOn(true);
+    if(projectileGra.solidArea.intersects(gp.playerGra.solidArea)) {                            
+    	projectileGra.setCollisionOn(true);
         contactPlayer = true;
     }
     //RESET SOLID AREA NUMBER
-        projectile.solidArea.x = projectile.getSolidAreaDefaultX();
-        projectile.solidArea.y = projectile.getSolidAreaDefaultY();
+        projectileGra.solidArea.x = projectileGra.getSolidAreaDefaultX();
+        projectileGra.solidArea.y = projectileGra.getSolidAreaDefaultY();
         gp.playerGra.solidArea.x = gp.playerGra.getSolidAreaDefaultX();
         gp.playerGra.solidArea.y = gp.playerGra.getSolidAreaDefaultY();
         return contactPlayer;

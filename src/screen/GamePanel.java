@@ -19,7 +19,9 @@ import main.Sound;
 import move.CollisionChecker;
 import move.KeyHandler;
 import object.Projectile;
+import object.ProjectileGraphic;
 import object.SuperObject;
+import object.SuperObjectGraphic;
 import tile.TileManager;
 
 
@@ -65,11 +67,11 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
     
     //ENTITY AND OBJECT
     public PlayerGraphic playerGra = new PlayerGraphic(this, keyH);   
-    public SuperObject obj[][] = new SuperObject[maxMap][20]; // can display up to 10 objects at the same time
+    public SuperObjectGraphic objGra[][] = new SuperObjectGraphic[maxMap][20]; // can display up to 10 objects at the same time
     public OldMan_Graphic[][] oldMan_Gra= new OldMan_Graphic[maxMap][10] ;
     public Princess_Graphic princess_Gra[][] = new Princess_Graphic[maxMap][10] ;
     public MonsterGraphic monsterGra[][] = new MonsterGraphic[maxMap][10];
-    public ArrayList<Projectile> projectileList = new ArrayList<>();
+    public ArrayList<ProjectileGraphic> projectileGraList = new ArrayList<>();
     
     //GAME STATE
     public int gameState;
@@ -194,13 +196,13 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
 
             }
           // PROJECTILE
-             for(int i = 0; i < projectileList.size(); i++) {
-                 if(projectileList.get(i) != null) {
-                        if (projectileList.get(i). isAlive() == true) {
-                             projectileList.get(i).update();
+             for(int i = 0; i < projectileGraList.size(); i++) {
+                 if(projectileGraList.get(i) != null) {
+                        if (projectileGraList.get(i). isAlive() == true) {
+                             projectileGraList.get(i).update();
                         }
-                        if(projectileList.get(i). isAlive() == false) {
-                             projectileList.remove(i);
+                        if(projectileGraList.get(i). isAlive() == false) {
+                             projectileGraList.remove(i);
                         }
                  }
 
@@ -217,9 +219,9 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
         else {
             tileM.draw(g2); 
             //OBJECT
-            for(int i = 0; i < obj.length; i++) {
-                if(obj[currentMap][i] != null) {
-                    obj[currentMap][i].draw(g2,this);
+            for(int i = 0; i < objGra.length; i++) {
+                if(objGra[currentMap][i] != null) {
+                    objGra[currentMap][i].draw(g2);
                 }
             }
             //NPC
@@ -240,9 +242,9 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
             		monsterGra[currentMap][i].draw(g2, monsterGra[currentMap][i], monsterGra[currentMap][i].monGreen);
             	}
             }
-            for(int i = 0; i < projectileList.size(); i++) {
-                if(projectileList.get(i) != null) {
-                		projectileList.get(i).draw(g2);
+            for(int i = 0; i < projectileGraList.size(); i++) {
+                if(projectileGraList.get(i) != null) {
+                		projectileGraList.get(i).draw(g2);
                 }
             }
             

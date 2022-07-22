@@ -27,39 +27,39 @@ public class AssetSetter {
 
     public void setObject() {
     	
-//    	int i = 0;
-//    	gp.obj[0][i] = new OBJ_Coin_Bronze(gp);
-//    	gp.obj[0][i].worldX = gp.tileSize*25;
-//    	gp.obj[0][i].worldY = gp.tileSize*23;
-//    	i++;
-//    	gp.obj[0][i] = new OBJ_Coin_Bronze(gp);
-//    	gp.obj[0][i].worldX = gp.tileSize*21;
-//    	gp.obj[0][i].worldY = gp.tileSize*19;
-//    	i++;
-//    	gp.obj[0][i] = new OBJ_Key(gp);
-//    	gp.obj[0][i].worldX = gp.tileSize*26;
-//    	gp.obj[0][i].worldY = gp.tileSize*21;
-//    	i++;
-//    	gp.obj[0][i] = new OBJ_Axe(gp);
-//    	gp.obj[0][i].worldX = gp.tileSize*30;
-//    	gp.obj[0][i].worldY = gp.tileSize*21;
-//    	i++;
-//    	gp.obj[0][i] = new OBJ_Shield_Blue(gp);
-//    	gp.obj[0][i].worldX = gp.tileSize*35;
-//    	gp.obj[0][i].worldY = gp.tileSize*21;
-//    	i++;
-//    	gp.obj[0][i] = new OBJ_Potion_Red(gp);
-//    	gp.obj[0][i].worldX = gp.tileSize*22;
-//    	gp.obj[0][i].worldY = gp.tileSize*27;
-//    	i++;
-//    	gp.obj[0][i] = new OBJ_Heart(gp);
-//    	gp.obj[0][i].worldX = gp.tileSize*22;
-//    	gp.obj[0][i].worldY = gp.tileSize*29;
-//    	i++;
-//    	gp.obj[0][i] = new OBJ_ManaCrystal(gp);
-//    	gp.obj[0][i].worldX = gp.tileSize*27;
-//    	gp.obj[0][i].worldY = gp.tileSize*31;
-//    	i++;
+    	int i = 0;
+    	gp.objGra[0][i] = new OBJ_Coin_Bronze(gp);
+    	gp.objGra[0][i].worldX = gp.tileSize*25;
+    	gp.objGra[0][i].worldY = gp.tileSize*23;
+    	i++;
+    	gp.objGra[0][i] = new OBJ_Coin_Bronze(gp);
+    	gp.objGra[0][i].worldX = gp.tileSize*21;
+    	gp.objGra[0][i].worldY = gp.tileSize*19;
+    	i++;
+    	gp.objGra[0][i] = new OBJ_Key(gp);
+    	gp.objGra[0][i].worldX = gp.tileSize*26;
+    	gp.objGra[0][i].worldY = gp.tileSize*21;
+    	i++;
+    	gp.objGra[0][i] = new OBJ_Axe(gp);
+    	gp.objGra[0][i].worldX = gp.tileSize*30;
+    	gp.objGra[0][i].worldY = gp.tileSize*21;
+    	i++;
+    	gp.objGra[0][i] = new OBJ_Shield_Blue(gp);
+    	gp.objGra[0][i].worldX = gp.tileSize*35;
+    	gp.objGra[0][i].worldY = gp.tileSize*21;
+    	i++;
+    	gp.objGra[0][i] = new OBJ_Potion_Red(gp);
+    	gp.objGra[0][i].worldX = gp.tileSize*22;
+    	gp.objGra[0][i].worldY = gp.tileSize*27;
+    	i++;
+    	gp.objGra[0][i] = new OBJ_Heart(gp);
+    	gp.objGra[0][i].worldX = gp.tileSize*22;
+    	gp.objGra[0][i].worldY = gp.tileSize*29;
+    	i++;
+    	gp.objGra[0][i] = new OBJ_ManaCrystal(gp);
+    	gp.objGra[0][i].worldX = gp.tileSize*27;
+    	gp.objGra[0][i].worldY = gp.tileSize*31;
+    	i++;
     }
     
     public void setNPC() {

@@ -1,12 +1,11 @@
 package object;
 import screen.GamePanel;
 
-public class OBJ_Door extends SuperObject { 
-	 GamePanel gp;
+public class OBJ_Door extends SuperObjectGraphic { 
     public OBJ_Door(GamePanel gp) {
-    	 this.gp = gp;
+    	 super(gp);
     	 
-        name = "Door";
+        obj.name = "Door";
         image1 = setup("/res/objects/door",gp.tileSize, gp.tileSize);
      
         collision = true;

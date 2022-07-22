@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 import object.SuperObject;
+import object.SuperObjectGraphic;
 
 //import object.OBJ_Heart;
 //import object.SuperObject;
@@ -56,11 +57,11 @@ public class UI {
 		}
         
         //CREATE HUD OBJECT
-        SuperObject heart = new OBJ_Heart(gp);
+        SuperObjectGraphic heart = new OBJ_Heart(gp);
         heart_full = heart.getImage1();
         heart_half = heart.getImage2();
         heart_blank = heart.getImage3(); 
-        SuperObject manaCrystal = new OBJ_ManaCrystal(gp);
+        SuperObjectGraphic manaCrystal = new OBJ_ManaCrystal(gp);
         crystal_full = manaCrystal.getImage1();
         crystal_blank = manaCrystal.getImage2();
         
@@ -98,8 +99,8 @@ public class UI {
     	if(gp. gameState == gp.playState) {
 			g2.setFont(arial_40);
     		g2.setColor(Color.white);
-        	g2.drawString("row: "+ (gp.playerGra.worldY/ gp.tileSize+2), 10, 10*gp.tileSize);
-        	g2.drawString("col: "+ gp.playerGra.worldX/ gp.tileSize, 10, 11*gp.tileSize);
+        	g2.drawString("row: "+ (gp.playerGra.worldY/ gp.tileSize+1), 10, 10*gp.tileSize);
+        	g2.drawString("col: "+ (gp.playerGra.worldX/ gp.tileSize+1), 10, 11*gp.tileSize);
         	drawMessage();
     		drawPlayerLife();
     	}
@@ -446,7 +447,7 @@ public void drawPlayerLife() 	{
     		
             drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
-    		for(String line: gp.playerGra.player.inventory.get(itemIndex). getDescription().split("\n")){
+    		for(String line: gp.playerGra.player.inventory.get(itemIndex).obj.getDescription().split("\n")){
     			g2.drawString(line,textX,textY);
     			textY+=32;
     		}
