@@ -123,14 +123,20 @@ public class Player extends Entity {
    
     	}
     }
-//    public void interactPrin(int i) {
-//    	if(gp.keyH.enterPressed == true) {
-//    		if(i!=999) {
-////    			playerGra.setAttackCanceled(true);
-////    			gp.gameState = gp.winGameState;
-//    		}
-//    	}
-//    }
+    public void interactPrin(int i, GamePanel gp, PlayerGraphic playerGra) {
+    	if(i != 999) {
+    		gp.princess_Gra[gp.currentMap][i].npcPrin.speak(gp, gp.princess_Gra[gp.currentMap][i]);
+    		gp.gameState = gp.dialogueState;
+    	}
+    	if(gp.keyH.enterPressed == true) {
+    		if(i!=999) {
+    			playerGra.setAttackCanceled(true);    			
+    			gp.gameState = gp.winGameState;
+    			gp.stopMusic();
+    			gp.playSE(14);
+    		}
+    	}
+    }
 
     public void contactMonster(int i, GamePanel gp, PlayerGraphic playerGra) {
 

@@ -26,7 +26,8 @@ public class TileManager {
 		
 		getTileImage();
 		loadMap("/res/maps/worldV4.txt",0);
-		loadMap("/res/maps/Insidehouse.txt",1);		
+		loadMap("/res/maps/map2v2.txt", 1);
+		loadMap("/res/maps/Insidehouse.txt", 2);		
 	}
 	public void getTileImage() {
 	
@@ -108,22 +109,22 @@ public class TileManager {
 		
 		//TREE 
 		setup(63,"48",true);
-		setup(64,"tree1",true);
+		setup(64,"tree1",false);
 		setup(65,"tree2",true);
 		setup(66,"tree3",true);
-		setup(67,"tree4",true);
-		setup(68,"tree5",true);
+		setup(67,"tree4",false);
+		setup(68,"tree5",false);
 		setup(69,"tree6",true);
 		setup(70,"tree7",true);
-		setup(71,"tree8",true);
-		setup(72,"tree9",true);
+		setup(71,"tree8",false);
+		setup(72,"tree9",false);
 		setup(73,"tree10",true);
 		setup(74,"tree11",true);
-		setup(75,"tree12",true);
-		setup(76,"tree13",true);
+		setup(75,"tree12",false);
+		setup(76,"tree13",false);
 		setup(77,"tree14",true);
 		setup(78,"tree15",true);
-		setup(79,"tree16",true);
+		setup(79,"tree16",false);
 		
 		//TUSSOCK
 		setup(80,"tussock1",false);

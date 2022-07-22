@@ -1,14 +1,13 @@
 package entity;
-import java.util.Random;
 import screen.GamePanel;
 
 
 public class Princess_Graphic extends EntityGraphic {
-    public NPC_Princess npcPrint;
+    public NPC_Princess npcPrin;
     
     public Princess_Graphic(GamePanel gp) {
         super(gp);
-		npcPrint = new NPC_Princess();
+		npcPrin = new NPC_Princess();
 		direction = "down";
 		
 		getImage();
@@ -19,6 +18,7 @@ public class Princess_Graphic extends EntityGraphic {
         solidArea.width = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        setDialogue();
 	}
 	public void getImage() {
         up1 = setup("/res/npc/princess_up_2",gp.tileSize, gp.tileSize);
@@ -30,27 +30,27 @@ public class Princess_Graphic extends EntityGraphic {
         right1 = setup("/res/npc/princess_right_2",gp.tileSize, gp.tileSize);
         right2 = setup("/res/npc/princess_right_4",gp.tileSize, gp.tileSize);
     }
-    
-    public void setAction() {
-		actionLockCounter++;
-		
-		if(actionLockCounter == 120) {
-			Random random = new Random();
-			int i =random.nextInt(100)+1; //pick up a number from 1 to 100
-			if(i <= 25) {
-				direction = "up";
-			}
-			if(i > 25 && i <= 50) {
-				direction = "down";
-			}
-			if(i > 50 && i <= 75) {
-				direction = "left";
-			}
-			if(i > 75 && i <= 100) {
-				direction = "right";
-			}
-			
-			actionLockCounter = 0;
+	public void setDialogue() {
+		dialogues[0] = "Hello, lad.";
+		dialogues[1] = "So you've come to this island to find the treasure?";
+		dialogues[2] = "I used to be a great wizard but now...I'm a bit too old for \ntaking an adventure.";
+		dialogues[3] = "Well, good luck on you.";
+		dialogues[4] = "Hello!";
+	}
+	public void update() {
+		switch(gp.playerGra.direction) {
+		case "up":
+			this.direction = "down";
+			break;
+		case "down":
+			this.direction = "up";
+			break;
+		case "left":
+			this.direction = "right";
+			break;
+		case "right":
+			this.direction = "left";
+			break;
 		}
 	}
     

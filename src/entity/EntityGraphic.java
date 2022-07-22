@@ -95,7 +95,7 @@ public class EntityGraphic {
     	gp.cChecker.checkTile(this, entity);
     	//gp.cChecker.checkObject(this, entity, false);
         gp.cChecker.checkEntity(this, entity, gp.oldMan_Gra);
-        //gp.cChecker.checkEntity(this, entity, gp.princess_Gra);
+        gp.cChecker.checkEntity(this, entity, gp.princess_Gra);
         gp.cChecker.checkEntity(this, entity, gp.monsterGra);
 
     	boolean contactPlayer = gp.cChecker.checkPlayer(this, entity);
@@ -234,6 +234,7 @@ public class EntityGraphic {
 	public boolean getInvincible() { return invincible;}
 	public boolean  isAlive() {return alive;}
 	public boolean  isDying() {	return dying;}
+	public int getDialogueIndex() {return dialogueIndex;}
 
 }
 

@@ -68,9 +68,9 @@ public class AssetSetter {
     	gp.oldMan_Gra[0][0].worldX= (gp.tileSize*27);
     	gp.oldMan_Gra[0][0].worldY= (gp.tileSize*30);
 
-		gp.princess_Gra[0][1] = new Princess_Graphic(gp);
-		gp.princess_Gra[0][1].worldX= (gp.tileSize*30);
-    	gp.princess_Gra[0][1].worldY= (gp.tileSize*30);
+		gp.princess_Gra[2][1] = new Princess_Graphic(gp);
+		gp.princess_Gra[2][1].worldX= (gp.tileSize*16);
+    	gp.princess_Gra[2][1].worldY= (gp.tileSize*22);
         
     }
 
@@ -83,19 +83,19 @@ public class AssetSetter {
     	gp.monsterGra[0][i]=new MonsterGraphic(gp);
     	gp.monsterGra[0][i].worldX= (gp.tileSize*23);
     	gp.monsterGra[0][i].worldY= (gp.tileSize*42);
-    	i++;
-    	gp.monsterGra[0][i]=new MonsterGraphic(gp);
-    	gp.monsterGra[0][i].worldX= (gp.tileSize*24);
-    	gp.monsterGra[0][i].worldY= (gp.tileSize*37);
-    	i++;
-    	gp.monsterGra[0][i]=new MonsterGraphic(gp);
-    	gp.monsterGra[0][i].worldX= (gp.tileSize*34);
-    	gp.monsterGra[0][i].worldY= (gp.tileSize*42);
-    	i++;
-    	gp.monsterGra[0][i]=new MonsterGraphic(gp);
-    	gp.monsterGra[0][i].worldX=(gp.tileSize*38);
-    	gp.monsterGra[0][i].worldY= (gp.tileSize*42);
-    	i++;
+//    	i++;
+//    	gp.monsterGra[0][i]=new MonsterGraphic(gp);
+//    	gp.monsterGra[0][i].worldX= (gp.tileSize*24);
+//    	gp.monsterGra[0][i].worldY= (gp.tileSize*37);
+//    	i++;
+//    	gp.monsterGra[0][i]=new MonsterGraphic(gp);
+//    	gp.monsterGra[0][i].worldX= (gp.tileSize*34);
+//    	gp.monsterGra[0][i].worldY= (gp.tileSize*42);
+//    	i++;
+//    	gp.monsterGra[0][i]=new MonsterGraphic(gp);
+//    	gp.monsterGra[0][i].worldX=(gp.tileSize*38);
+//    	gp.monsterGra[0][i].worldY= (gp.tileSize*42);
+//    	i++;
     }
 }
 

@@ -126,6 +126,10 @@ public class UI {
     	if(gp.gameState == gp.gameOverState) {
     		drawGameOverScreen();
     	}
+    	// WIN GAME STATE
+    	if(gp.gameState == gp.winGameState) {
+    		drawWinGameState();
+    	}
     }
 public void drawMessage() { 
     	
@@ -484,7 +488,7 @@ public void drawPlayerLife() 	{
     		y += 40;
     	}
     }
-public void drawOptionsScreen() {
+    public void drawOptionsScreen() {
     	
     	g2.setColor(Color.white);
     	g2.setFont(g2.getFont().deriveFont(32F));
@@ -748,6 +752,25 @@ public void drawOptionsScreen() {
     	if(commandNum == 1) {
     		g2.drawString(">", x - 25, y);
     	}
+    }
+    public void drawWinGameState() {
+    	g2.setColor(new Color(50,205,50));
+    	g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+    	
+    	g2.setFont(g2.getFont().deriveFont(Font.BOLD, 80F));
+    	String text = "CONGRATULATION!";
+    	int x = getXforCenteredText(text);
+    	int y = gp.tileSize*3;
+    	g2.setColor(Color.black);
+    	g2.drawString(text, x, y);
+    	
+    	//MARIO IMAGE
+    	x = gp.screenWidth/2 - (gp.tileSize*2)/2;
+    	y += gp.tileSize*2;
+    	g2.drawImage(gp.playerGra.getDown1(), x, y, gp.tileSize*2, gp.tileSize*2, null);
+    	//PRINCESS IMAGE
+    	
+    	
     }
     	
     public void drawSubWindow(int x,int y,int width,int height) { //video15

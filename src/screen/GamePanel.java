@@ -8,9 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.plaf.DimensionUIResource;
 
 import entity.MonsterGraphic;
-import entity.NPC_OldMan;
 import entity.OldMan_Graphic;
-import entity.Player;
 import entity.PlayerGraphic;
 import entity.Princess_Graphic;
 import event.EventHandler;
@@ -81,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
     public final int characterState = 5; 
     public final int optionsState = 6;
     public final int gameOverState = 7; 
+    public final int winGameState = 8;
 
     public GamePanel() {
 
@@ -102,6 +101,7 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
         if(fullScreenOn == true) {
     		setFullScreen();
     	}
+        
     }
     public void retry() {
     	playerGra.setDefaultPositions();
@@ -152,7 +152,6 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
             
             if(delta >= 1) {
                 update();
-                //repaint();
                 drawToTempScreen(); // draw everything to the buffered image
                 drawToScreen();		// draw the buffered image to the screen
                 delta--;
@@ -162,6 +161,17 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
             	timer = 0;
             }
         }
+    }
+    public boolean checkMonsterAlive() {
+    	boolean alive = false;
+    	for(int i = 0; i < monsterGra.length; i++) {
+    		if(monsterGra[currentMap][i] != null) {
+    			if (monsterGra[currentMap][i].isAlive() == true && monsterGra[currentMap][i].isDying() == false) {
+    				alive = true;
+    			}
+    		}
+    	}
+    	return alive;
     }
     public void update() {
     	if(gameState == playState) {
@@ -176,7 +186,7 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
 
             for(int i =0; i < princess_Gra.length; i++) {
     			if(princess_Gra[currentMap][i] != null) {
-                    princess_Gra[currentMap][i].update(princess_Gra[currentMap][i], princess_Gra[currentMap][i].npcPrint);
+                    princess_Gra[currentMap][i].update(princess_Gra[currentMap][i], princess_Gra[currentMap][i].npcPrin);
     			}
     		}
     		
@@ -230,7 +240,7 @@ public class GamePanel extends JPanel implements Runnable { // GamePanel is a su
             }
             for(int i = 0; i < princess_Gra.length; i++) {
             	if(princess_Gra[currentMap][i] != null) {
-            		princess_Gra[currentMap][i].draw(g2, princess_Gra[currentMap][i], princess_Gra[currentMap][i].npcPrint);
+            		princess_Gra[currentMap][i].draw(g2, princess_Gra[currentMap][i], princess_Gra[currentMap][i].npcPrin);
             	}
             }
             

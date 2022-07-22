@@ -14,7 +14,7 @@ public class NPC_OldMan extends Entity {
 	    		npcGra.dialogueIndex = 0;
 			}
 	    	
-			gp.ui. setCurrentDialogue(npcGra.dialogues[npcGra.dialogueIndex]);
+			gp.ui.setCurrentDialogue(npcGra.dialogues[npcGra.dialogueIndex]);
 			npcGra.dialogueIndex++;
 			if(npcGra.dialogueIndex > 4) npcGra.dialogueIndex = 4;
 			
