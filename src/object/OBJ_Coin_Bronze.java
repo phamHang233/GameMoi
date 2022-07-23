@@ -9,7 +9,7 @@ public class OBJ_Coin_Bronze extends SuperObjectGraphic {
 		obj.type = obj.type_pickupOnly;
 		obj.name = "Bronze Coin";
 		obj.value = 1;
-		 image1 = setup("/res/objects/Coin_Bronze", gp.tileSize, gp.tileSize);
+		 image1 = setup("/res/objects/coin_bronze", gp.tileSize, gp.tileSize);
 	}
 	
 	

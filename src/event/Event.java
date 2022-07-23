@@ -14,7 +14,7 @@ public class Event {
 		locationMap = 0;
 		eventCol = 0;
 		eventRow = 0;
-		solidArea = new Rectangle(20,20,4,4);
+		solidArea = new Rectangle(20,20,10,10);
 	}
 	public Event(String name, int eventCol, int eventRow){
 		this();
