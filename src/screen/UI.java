@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 import object.SuperObject;
+import object.SuperObjectGraphic;
 
 //import object.OBJ_Heart;
 //import object.SuperObject;
@@ -31,7 +32,7 @@ public class UI {
     private ArrayList<Integer> messageCounter = new ArrayList<>();
 //    public boolean gameFinished = false;
    
-    private String currentDialogue ;
+    private String currentDialogue;
     public int commandNum;
     public int slotCol;
     public int slotRow;
@@ -56,11 +57,11 @@ public class UI {
 		}
         
         //CREATE HUD OBJECT
-        SuperObject heart = new OBJ_Heart(gp);
+        SuperObjectGraphic heart = new OBJ_Heart(gp);
         heart_full = heart.getImage1();
         heart_half = heart.getImage2();
         heart_blank = heart.getImage3(); 
-        SuperObject manaCrystal = new OBJ_ManaCrystal(gp);
+        SuperObjectGraphic manaCrystal = new OBJ_ManaCrystal(gp);
         crystal_full = manaCrystal.getImage1();
         crystal_blank = manaCrystal.getImage2();
         
@@ -98,8 +99,8 @@ public class UI {
     	if(gp. gameState == gp.playState) {
 			g2.setFont(arial_40);
     		g2.setColor(Color.white);
-        	g2.drawString("row: "+ (gp.playerGra.worldY/ gp.tileSize+2), 10, 10*gp.tileSize);
-        	g2.drawString("col: "+ gp.playerGra.worldX/ gp.tileSize, 10, 11*gp.tileSize);
+        	g2.drawString("row: "+ (gp.playerGra.worldY/ gp.tileSize+1), 10, 10*gp.tileSize);
+        	g2.drawString("col: "+ (gp.playerGra.worldX/ gp.tileSize+1), 10, 11*gp.tileSize);
         	drawMessage();
     		drawPlayerLife();
     	}
@@ -128,7 +129,7 @@ public class UI {
     	}
     	// WIN GAME STATE
     	if(gp.gameState == gp.winGameState) {
-    		drawWinGameState();
+    		drawWinGameScreen();
     	}
     }
 public void drawMessage() { 
@@ -450,7 +451,7 @@ public void drawPlayerLife() 	{
     		
             drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
-    		for(String line: gp.playerGra.player.inventory.get(itemIndex). getDescription().split("\n")){
+    		for(String line: gp.playerGra.player.inventory.get(itemIndex).obj.getDescription().split("\n")){
     			g2.drawString(line,textX,textY);
     			textY+=32;
     		}
@@ -753,8 +754,8 @@ public void drawPlayerLife() 	{
     		g2.drawString(">", x - 25, y);
     	}
     }
-    public void drawWinGameState() {
-    	g2.setColor(new Color(0,250,154));
+    public void drawWinGameScreen() {
+    	g2.setColor(new Color(0,200,154));
     	g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
     	OBJ_Heart objHeart = new OBJ_Heart(gp);
     	
@@ -774,12 +775,12 @@ public void drawPlayerLife() 	{
     	g2.drawImage(gp.playerGra.getDown1(), x, y, gp.tileSize*2, gp.tileSize*2, null);
     	//PRINCESS IMAGE
     	x = gp.screenWidth/2 - gp.tileSize*3;
-    	g2.drawImage(gp.princess_Gra[2][1].getDown2(), x, y, gp.tileSize*2, gp.tileSize*2, null);
+    	g2.drawImage(gp.princess_Gra[2][1].getDown1(), x, y, gp.tileSize*2, gp.tileSize*2, null);
     	x = gp.screenWidth/2 - 25;
     	y += 25;
     	g2.drawImage(objHeart.getImage1(), x, y, gp.tileSize, gp.tileSize, null);
-    }
     	
+    }	
     public void drawSubWindow(int x,int y,int width,int height) { //video15
     		Color c= new Color(0,0,0,210);
     		g2.setColor(c);

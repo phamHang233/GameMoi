@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import object.Projectile;
+import object.ProjectileGraphic;
 import screen.GamePanel;
 import screen.UtilityTool;
 
@@ -22,17 +22,23 @@ public class EntityGraphic {
     protected BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     protected BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
     attackLeft1, attackLeft2, attackRight1, attackRight2;
-    public Projectile projectile;
+    public ProjectileGraphic projectileGra;
+    
+    //public BufferedImage image, image2, image3;
     public Rectangle solidArea ;
     public Rectangle attackArea ;
     protected int solidAreaDefaultX, solidAreaDefaultY; // for object interacting
+    //public boolean collision ;
     protected String dialogues[] = new String[20]; 
     //STATE
   	public int worldX, worldY;
   	protected boolean invincible ; //for monster collision
   	protected boolean attacking ;
   	protected boolean alive = true;
-  	protected boolean dying;
+  	protected boolean dying ;
+    
+    //STATE
+   
     protected String direction;
     protected  int spriteNum = 1;
     protected int dialogueIndex;
@@ -89,7 +95,7 @@ public class EntityGraphic {
     	gp.cChecker.checkTile(this, entity);
     	//gp.cChecker.checkObject(this, entity, false);
         gp.cChecker.checkEntity(this, entity, gp.oldMan_Gra);
-        gp.cChecker.checkEntity(this, entity, gp.princess_Gra);
+        //gp.cChecker.checkEntity(this, entity, gp.princess_Gra);
         gp.cChecker.checkEntity(this, entity, gp.monsterGra);
 
     	boolean contactPlayer = gp.cChecker.checkPlayer(this, entity);
@@ -221,7 +227,6 @@ public class EntityGraphic {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,  alphaValue));
 	}
 	public BufferedImage getDown1() { return down1;}
-	public BufferedImage getDown2() { return down2;}
 	public int getSolidAreaDefaultX() { return solidAreaDefaultX;}
 	public int getSolidAreaDefaultY() { return solidAreaDefaultY;}
 	public String getDirection() { return direction;}
@@ -229,7 +234,6 @@ public class EntityGraphic {
 	public boolean getInvincible() { return invincible;}
 	public boolean  isAlive() {return alive;}
 	public boolean  isDying() {	return dying;}
-
 }
 
 	

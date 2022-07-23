@@ -15,8 +15,6 @@ public class NPC_Princess extends Entity {
 		}
     	
 		gp.ui.setCurrentDialogue(prinGra.dialogues[prinGra.dialogueIndex]);
-		prinGra.dialogueIndex++;
-		if(prinGra.dialogueIndex > 4) prinGra.dialogueIndex = 4;
 		
 		switch(gp.playerGra.direction) {
 		case "up":

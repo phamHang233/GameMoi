@@ -31,11 +31,7 @@ public class Princess_Graphic extends EntityGraphic {
         right2 = setup("/res/npc/princess_right_4",gp.tileSize, gp.tileSize);
     }
 	public void setDialogue() {
-		dialogues[0] = "Hello, lad.";
-		dialogues[1] = "So you've come to this island to find the treasure?";
-		dialogues[2] = "I used to be a great wizard but now...I'm a bit too old for \ntaking an adventure.";
-		dialogues[3] = "Well, good luck on you.";
-		dialogues[4] = "Hello!";
+		dialogues[0] = "Oh my hero. Thanks for rescue me!";
 	}
 	public void update() {
 		switch(gp.playerGra.direction) {

@@ -36,10 +36,10 @@ public class OldMan_Graphic extends EntityGraphic{
         right2 = setup("/res/npc/oldman_right_2",gp.tileSize, gp.tileSize);
     }
 	public void setDialogue() {
-		dialogues[0] = "Hello, lad.";
-		dialogues[1] = "So you've come to this island to find the treasure?";
-		dialogues[2] = "I used to be a great wizard but now...I'm a bit too old for \ntaking an adventure.";
-		dialogues[3] = "Well, good luck on you.";
+		dialogues[0] = "Greeting hero, the princess has been detained by the Lord \nof Darkness.";
+		dialogues[1] = "To rescue her you have to pass 2 challenges he created.";
+		dialogues[2] = "The first challenge is the challenge of strength you must \ndefeat all the shadow creatures to activate the portal to \nthe next challenge.";
+		dialogues[3] = "The second challenge is more complex - The challenge of \nwisdom, you must find the way to pass the maze to get to \nthe ncastle where the princess is imprisoned.";
 		dialogues[4] = "Hello!";
 	}
 	public void setAction() {

@@ -22,7 +22,7 @@ public class Entity {
 	public int coin;
 
 	public Entity() {}
-	public void damageMonster() {}
+	public void damageMonster(int i, int attack, GamePanel gp, EntityGraphic entityGra) {}
 	 
 	public void damagePlayer(int attack, GamePanel gp) {}
 	

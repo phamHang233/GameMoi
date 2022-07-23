@@ -7,15 +7,15 @@ import move.KeyHandler;
 import object.OBJ_Fireball;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
-import object.SuperObject;
+import object.SuperObjectGraphic;
 
 public class PlayerGraphic  extends EntityGraphic {
 
     KeyHandler keyH;
     private final int screenX; // Player's position on screen
     private final int screenY;
-    public SuperObject currentWeapon;
-	public SuperObject currentShield;
+    public SuperObjectGraphic currentWeapon;
+	public SuperObjectGraphic currentShield;
     private boolean attackCanceled = false;
     public Player player;
 
@@ -27,7 +27,7 @@ public class PlayerGraphic  extends EntityGraphic {
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp); // the total defense value is decided by dexterity and shield
         attackArea = currentWeapon.attackArea;
-        projectile = new OBJ_Fireball(gp);
+        projectileGra = new OBJ_Fireball(gp);
         player = new Player();
         solidArea = new Rectangle(); // override    
         solidArea.x = 14;
@@ -65,33 +65,33 @@ public class PlayerGraphic  extends EntityGraphic {
         right2 = setup("/res/player/mario_run_right_2", gp.tileSize, gp.tileSize);
     }
     public void getPlayerAttackImage() {
-        if(currentWeapon.getType() ==currentWeapon.type_sword) {
-		attackUp1 = setup("/res/player/boy_attack_up_1",gp.tileSize, gp.tileSize*2);
-		attackUp2 = setup("/res/player/boy_attack_up_2",gp.tileSize, gp.tileSize*2);
-		attackDown1 = setup("/res/player/boy_attack_down_1",gp.tileSize, gp.tileSize*2);
-		attackDown2 = setup("/res/player/boy_attack_down_2",gp.tileSize, gp.tileSize*2);
-		attackLeft1 = setup("/res/player/boy_attack_left_1",gp.tileSize*2, gp.tileSize);
-		attackLeft2 = setup("/res/player/boy_attack_left_2",gp.tileSize*2, gp.tileSize);
-		attackRight1 = setup("/res/player/boy_attack_right_1",gp.tileSize*2, gp.tileSize);
-		attackRight2 = setup("/res/player/boy_attack_right_2",gp.tileSize*2, gp.tileSize);
+        if(currentWeapon.obj.getType() ==currentWeapon.obj.type_sword) {
+		attackUp1 = setup("/res/player/smb_attack_up_1",gp.tileSize, gp.tileSize*2);
+		attackUp2 = setup("/res/player/smb_attack_up_2",gp.tileSize, gp.tileSize*2);
+		attackDown1 = setup("/res/player/smb_attack_down_1",gp.tileSize, gp.tileSize*2);
+		attackDown2 = setup("/res/player/smb_attack_down_2",gp.tileSize, gp.tileSize*2);
+		attackLeft1 = setup("/res/player/smb_attack_left_1",gp.tileSize*2, gp.tileSize);
+		attackLeft2 = setup("/res/player/smb_attack_left_2",gp.tileSize*2, gp.tileSize);
+		attackRight1 = setup("/res/player/smb_attack_right_1",gp.tileSize*2, gp.tileSize);
+		attackRight2 = setup("/res/player/smb_attack_right_2",gp.tileSize*2, gp.tileSize);
     }
-        if(currentWeapon.getType() == currentWeapon.type_axe) {
-        	attackUp1 = setup("/res/player/boy_axe_up_1",gp.tileSize, gp.tileSize*2);
-    		attackUp2 = setup("/res/player/boy_axe_up_2",gp.tileSize, gp.tileSize*2);
-    		attackDown1 = setup("/res/player/boy_axe_down_1",gp.tileSize, gp.tileSize*2);
-    		attackDown2 = setup("/res/player/boy_axe_down_2",gp.tileSize, gp.tileSize*2);
-    		attackLeft1 = setup("/res/player/boy_axe_left_1",gp.tileSize*2, gp.tileSize);
-    		attackLeft2 = setup("/res/player/boy_axe_left_2",gp.tileSize*2, gp.tileSize);
-    		attackRight1 = setup("/res/player/boy_axe_right_1",gp.tileSize*2, gp.tileSize);
-    		attackRight2 = setup("/res/player/boy_axe_right_2",gp.tileSize*2, gp.tileSize);
-        }
+//        if(currentWeapon.obj.getType() == currentWeapon.obj.type_axe) {
+//        	attackUp1 = setup("/res/player/boy_axe_up_1",gp.tileSize, gp.tileSize*2);
+//    		attackUp2 = setup("/res/player/boy_axe_up_2",gp.tileSize, gp.tileSize*2);
+//    		attackDown1 = setup("/res/player/boy_axe_down_1",gp.tileSize, gp.tileSize*2);
+//    		attackDown2 = setup("/res/player/boy_axe_down_2",gp.tileSize, gp.tileSize*2);
+//    		attackLeft1 = setup("/res/player/boy_axe_left_1",gp.tileSize*2, gp.tileSize);
+//    		attackLeft2 = setup("/res/player/boy_axe_left_2",gp.tileSize*2, gp.tileSize);
+//    		attackRight1 = setup("/res/player/boy_axe_right_1",gp.tileSize*2, gp.tileSize);
+//    		attackRight2 = setup("/res/player/boy_axe_right_2",gp.tileSize*2, gp.tileSize);
+//        }
     }
     public int getAttack() {
 		this.attackArea = this.currentWeapon.attackArea;
-		return player.attack = player.strength * this.currentWeapon.getAttackValue();
+		return player.attack = player.strength * this.currentWeapon.obj.getAttackValue();
 	}
 	public int getDefense() {
-		return player.defense = player.dexteriry * this.currentShield.getDefenseValue();
+		return player.defense = player.dexteriry * this.currentShield.obj.getDefenseValue();
 	}
     public void update() { // is call 60 times per second
     	if (attacking == true) {
@@ -121,6 +121,7 @@ public class PlayerGraphic  extends EntityGraphic {
 //    		//CHECK NPC COLLISTION		
     		int npcIndex = gp.cChecker.checkEntity(this, this.player, gp.oldMan_Gra);
     		player.interactNPC(npcIndex, gp, this);
+    		
     		//CHECK PRIN COLLISTION
     		int prinIndex = gp.cChecker.checkEntity(this, this.player, gp.princess_Gra);
     		player.interactPrin(prinIndex, gp, this);
@@ -156,15 +157,15 @@ public class PlayerGraphic  extends EntityGraphic {
     		spriteCounter = 0;
     	}
 	}
-		if(gp.keyH.shotKeyPressed  == true && this.projectile.isAlive() == false 
-				&& shotAvailableCounte == 30 && this.projectile.haveResource(player) == true) {
+		if(gp.keyH.shotKeyPressed  == true && this.projectileGra.isAlive() == false 
+				&& shotAvailableCounte == 30 && this.projectileGra.haveResource(player) == true) {
     		
 			// SET DEFAULT COORDINATES, DIRECTION AND USER
-			this.projectile.set(this.worldX, this.worldY, direction, true, player);
+			this.projectileGra.set(this.worldX, this.worldY, direction, true, player);
 //			// SUBSTRACT THE COST(MANA, AMMO, ETC)
-			this.projectile.subtractResource(this.player);
+			this.projectileGra.subtractResource(this.player);
 //			// ADD IT TO THE LIST
-			gp.projectileList.add(this.projectile);
+			gp.projectileGraList.add(this.projectileGra);
 			gp.playSE(9);
 			shotAvailableCounte = 0;
 		}

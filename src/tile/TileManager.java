@@ -27,7 +27,7 @@ public class TileManager {
 		getTileImage();
 		loadMap("/res/maps/worldV4.txt",0);
 		loadMap("/res/maps/map2v2.txt", 1);
-		loadMap("/res/maps/Insidehouse.txt", 2);		
+		loadMap("/res/maps/Insidehouse.txt",2);		
 	}
 	public void getTileImage() {
 	
@@ -108,10 +108,10 @@ public class TileManager {
 		setup(62,"house16",true);
 		
 		//TREE 
-		setup(63,"48",true);
+		setup(63,"wall",true);
 		setup(64,"tree1",false);
-		setup(65,"tree2",true);
-		setup(66,"tree3",true);
+		setup(65,"tree2",false);
+		setup(66,"tree3",false);
 		setup(67,"tree4",false);
 		setup(68,"tree5",false);
 		setup(69,"tree6",true);
@@ -256,6 +256,7 @@ public class TileManager {
 		setup(200,"insidehouse78",true);
 		setup(201,"insidehouse79",true);
 		setup(202,"insidehouse80",true);
+		setup(203,"Tele",false);
 		
 	
 	}

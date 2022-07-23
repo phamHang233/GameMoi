@@ -1,7 +1,7 @@
 package entity;
 
 import screen.GamePanel;
-import object.SuperObject;
+import object.SuperObjectGraphic;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ public class Player extends Entity {
 
   
     //PlayerGraphic playerGra;
-	public ArrayList<SuperObject> inventory = new ArrayList<>();
+	public ArrayList<SuperObjectGraphic> inventory = new ArrayList<>();
 	public final int maxInventorySize = 20;
 
     public Player() {
@@ -88,26 +88,26 @@ public class Player extends Entity {
         if(i != 999) {
         	
         	//PICKUP ONLY ITEMS
-        	if(gp.obj[gp.currentMap][i].getType() == gp.obj[gp.currentMap][i].type_pickupOnly) {
+        	if(gp.objGra[gp.currentMap][i].obj.getType() == gp.objGra[gp.currentMap][i].obj.type_pickupOnly  ) {
     			
-    			gp.obj[gp.currentMap][i].use();
-    			gp.obj[gp.currentMap][i] = null;
+    			gp.objGra[gp.currentMap][i].use();
+    			gp.objGra[gp.currentMap][i] = null;
     		}
-        		//INVENTORY ITEMS
+        		//INVENTORY ITEM
         	else {
         		String text;
 			 
         		if( inventory.size() != maxInventorySize) {
 				 
-        			inventory.add(gp.obj[gp.currentMap][i]);
+        			inventory.add(gp.objGra[gp.currentMap][i]);
         			gp.playSE(1);
-        			text = "Got a " + gp.obj[gp.currentMap][i].getName() + "!";
+        			text = "Got a " + gp.objGra[gp.currentMap][i].obj.getName() + "!";
         		}
         		else {
 				  text = " You cannot carry anymore!";
         		}
 			gp.ui.addMessage(text);
-			gp.obj[gp.currentMap][i] = null;
+			gp.objGra[gp.currentMap][i] = null;
         	}	
         }
 
@@ -130,6 +130,7 @@ public class Player extends Entity {
     	}
     	if(gp.keyH.enterPressed == true) {
     		if(i!=999) {
+    			
     			playerGra.setAttackCanceled(true);    			
     			gp.gameState = gp.winGameState;
     			gp.stopMusic();
@@ -201,9 +202,9 @@ public class Player extends Entity {
 		
 		if(itemIndex < inventory.size()) {
 			
-			SuperObject selectedItem = inventory.get(itemIndex);
+			SuperObjectGraphic selectedItem = inventory.get(itemIndex);
 			
-			if(selectedItem.getType() == selectedItem.type_sword || selectedItem.getType() == selectedItem.type_axe) {
+			if(selectedItem.obj.getType() == selectedItem.obj.type_sword || selectedItem.obj.getType() == selectedItem.obj.type_axe) {
 				
 				playerGra.currentWeapon = selectedItem;
 				attack = getAttack();
@@ -211,14 +212,14 @@ public class Player extends Entity {
 				
 				
 			}
-			if(selectedItem.getType() == selectedItem.type_shield) {
+			if(selectedItem.obj.getType() == selectedItem.obj.type_shield) {
 				
 				playerGra.currentShield = selectedItem;
 				defense = getDefense();
 			}
-			if(selectedItem.getType() == selectedItem.type_consumable) {
+			if(selectedItem.obj.getType() == selectedItem.obj.type_consumable) {
 				
-				selectedItem.use();
+				selectedItem.obj.use();
 				inventory.remove(itemIndex);
 			}
 		}

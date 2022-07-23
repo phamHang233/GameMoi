@@ -5,26 +5,24 @@ import java.awt.Color;
 import entity.Entity;
 import screen.GamePanel;
 
-public class OBJ_Fireball extends Projectile{
-    GamePanel gp;
+public class OBJ_Fireball extends ProjectileGraphic{
     public OBJ_Fireball (GamePanel gp) {
-        super(gp);
-        this.gp = gp;
-
-        name = "Fireball";
-        speed = 5;
-        maxHp = 80;
-        hp = maxHp;
-        attack = 2;
-        useCost = 1;
-        alive = false;
+    	super(gp);
+    	projectile.name = "Fireball";
+    	projectile.speed = 5;
+    	projectile.maxHp = 80;
+    	projectile.hp = projectile.maxHp;
+    	projectile.attack = 2;
+    	projectile.useCost = 1;
+    	projectile.alive = false;
         getImage();
+        
     }
 
     public void getImage() {
-        up1 = setup("/res/projectile/fireball_up_1", gp.tileSize, gp.tileSize);
-        up2 = setup("/res/projectile/fireball_up_2", gp.tileSize, gp.tileSize);
-        down1 = setup("/res/projectile/fireball_down_1", gp.tileSize, gp.tileSize);
+    	up1 = setup("/res/projectile/fireball_up_1", gp.tileSize, gp.tileSize);
+    	up2 = setup("/res/projectile/fireball_up_2", gp.tileSize, gp.tileSize);
+    	down1 = setup("/res/projectile/fireball_down_1", gp.tileSize, gp.tileSize);
         down2 = setup("/res/projectile/fireball_down_2", gp.tileSize, gp.tileSize);
         left1 = setup("/res/projectile/fireball_left_1", gp.tileSize, gp.tileSize);
         left2 = setup("/res/projectile/fireball_left_2", gp.tileSize, gp.tileSize);
@@ -34,14 +32,14 @@ public class OBJ_Fireball extends Projectile{
 
     public boolean haveResource(Entity user) {
         boolean haveResource = false;
-        if(user.mana >= useCost) {
+        if(user.mana >= projectile.useCost) {
             haveResource = true;
         }
         return haveResource; 
     }
 
     public void subtractResource(Entity user) {
-        user.mana -= useCost;
+        user.mana -= projectile.useCost;
     }
     public Color getParticleColor() {
  		 Color color = new Color(240, 50, 0);

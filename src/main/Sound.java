@@ -16,7 +16,7 @@ public class Sound {
 	private float volume;
 	
 	public Sound() {
-		 volumeScale = 3;
+		volumeScale = 3;
 		soundURL[0] = getClass().getResource("/res/sound/smb_gamemusic_1.wav");
 		soundURL[1] = getClass().getResource("/res/sound/coin.wav");
 		soundURL[2] = getClass().getResource("/res/sound/powerup.wav");
