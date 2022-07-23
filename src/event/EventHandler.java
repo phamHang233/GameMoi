@@ -90,7 +90,8 @@ public class EventHandler {
 			gp.gameState = gameState;
 			int k = 0;
 			for( int i=0 ; i< gp.monsterGra[gp.currentMap].length; i++) {
-				k++;
+				if (gp.monsterGra[gp.currentMap][i] != null)
+					k++;
 			}
 			gp.ui.setCurrentDialogue("You must kill " + k + " monster!");
 //			
