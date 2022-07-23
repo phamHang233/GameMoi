@@ -14,9 +14,8 @@ public class OBJ_Potion_Red extends SuperObjectGraphic {
 				 
 	 }
 	 public void use() {
-		 
 		 gp.gameState = gp.dialogueState;
-		 gp.ui. setCurrentDialogue(" You drink the " + obj.name + "!\n"
+		 gp.ui.setCurrentDialogue(" You drink the " + obj.name + "!\n"
 				 + "Your life has been recovered by " + obj.value + ".");
 		 gp.playerGra.player.hp += obj.value;
 		 gp.playSE(2);
